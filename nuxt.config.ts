@@ -2,7 +2,7 @@
 
 export default {
   dev: process.env.NODE_ENV !== "production",
-  /*
+  /**
    ** Headers of the page
    ** Doc: https://vue-meta.nuxtjs.org/api/#metainfo-properties
    */
@@ -26,7 +26,7 @@ export default {
     transpile: [],
   },
 
-  /*
+  /**
    ** Nuxt.js modules
    ** Doc: https://modules.nuxtjs.org
    */
@@ -38,7 +38,7 @@ export default {
     "@nuxtjs/tailwindcss",
   ],
 
-  /*
+  /**
    ** Global CSS
    ** Doc: https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-css
    */

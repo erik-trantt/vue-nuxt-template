@@ -1,5 +1,3 @@
-// tsconfig.json
-// https://blog.logrocket.com/how-to-set-up-and-code-nuxt-js-apps-fully-in-typescript/
 {
   "compilerOptions": {
     "target": "es2018",
@@ -19,12 +17,16 @@
     "noImplicitAny": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"],
-      "@/*": ["./*"]
+      "~/*": [
+        "./src/*"
+      ],
+      "@/*": [
+        "./*"
+      ]
     },
     "types": [
-      "@nuxt/types",
       "@types/node",
+      "@nuxt/types",
       "@types/tailwindcss"
     ]
   },
