@@ -14,10 +14,7 @@
     "generate": "nuxt generate",
     "post-update": "yarn upgrade --latest"
   },
-  "eslintConfig": ".eslintrc",
   "dependencies": {
-    "@babel/core": "^7.14.3",
-    "@babel/eslint-parser": "^7.14.3",
     "@nuxt/babel-preset-app": "2.15.6",
     "@nuxt/types": "^2.15.0",
     "@nuxt/typescript-build": "^2.1.0",
