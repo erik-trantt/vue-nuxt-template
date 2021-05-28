@@ -8,17 +8,16 @@
           class="item-v bg-green-700 bg-opacity-25"
           style="height: 50%; width: 100%"
         >
-          b
+          {{ $mq }}
         </div>
         <div
           class="item-v bg-green-900 bg-opacity-25"
           style="height: 50%; width: 100%"
         >
-          c
+          {{ $mq | mq({ sm: 1, md: 2, lg: "3++" }) }}
         </div>
       </div>
     </div>
-    <div class="bg-white">asd</div>
   </section>
 </template>
 

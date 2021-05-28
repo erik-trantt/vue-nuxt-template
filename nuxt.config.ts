@@ -74,5 +74,5 @@ export default {
    ** Plugins to load before mounting the App
    ** Doc: https://nuxtjs.org/docs/2.x/directory-structure/plugins
    */
-  plugins: [],
+  plugins: ["~/plugins/vue-mq.js"],
 };
