@@ -3,6 +3,10 @@
 const defaultConfig = require("tailwindcss/defaultConfig");
 
 module.exports = {
+  /**
+   * tailwindcss v2 now supports 'jit' mode
+   */
+  mode: ["stg", "prd"].includes(process.env.APP_ENV) ? "jit" : "",
   theme: {
     extend: {
       colors: {
@@ -18,9 +22,11 @@ module.exports = {
   variants: {},
   plugins: [],
   purge: {
-    enabled: process.env.APP_ENV !== "dev",
-    // tailwindcss v2 uses 'layers' purge mode
-    // recommended to purge utilities, but not base & components
+    enabled: ["stg", "prd"].includes(process.env.APP_ENV),
+    /**
+     * tailwindcss v2 now supports 'layers' purge mode
+     * recommended to purge utilities, but not base & components
+     */
     layers: ["utilities"],
     content: [
       "components/**/*.{vue,js}",
@@ -29,11 +35,36 @@ module.exports = {
       "plugins/**/*.{js,ts}",
       "nuxt.config.{js,ts}",
     ],
-    // purgecss v2 whitelisting options, example below
-    /* options: {
-      whitelist: ["bg-red-500", "w-1/2"],
-      whitelistPatterns: [],
-      whitelistPatternsChildren: [],
-    }, */
+    /**
+     * for tailwind v1.9.x, purgecss v2 whitelisting options,
+     * example below:
+     */
+    // options: {
+    //   whitelist: ["bg-red-500", "w-1/2"],
+    //   whitelistPatterns: [],
+    //   whitelistPatternsChildren: [],
+    // },
+
+    /**
+     * for tailwind v2, purgecss v4 changed from 'whitelist'
+     * to 'safelist'.
+     * when in 'jit' mode, safelist only supports as an Array of
+     * classes at the moment, for examples:
+     */
+    // safelist: ["bg-red-500", "w-1/2", "text-2xl"],
+
+    /**
+     * when not using 'jit' mode, can use PurgeCSS 'options' object
+     * to safelist and blocklist classes, see examples below.
+     * for all options: https://purgecss.com/configuration.html#configuration-file
+     */
+    // options: {
+    //   safelist: {
+    //     standard: ["bg-red-500", "w-1/2", /^text-/],
+    //     deep: [/^text-/],
+    //     greedy: [],
+    //   },
+    //   blocklist: ["bg-green-700"],
+    // },
   },
 };

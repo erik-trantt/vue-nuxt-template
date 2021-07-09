@@ -5,7 +5,8 @@
   "author": "Nuxt.js Team",
   "private": true,
   "scripts": {
-    "dev": "MINIMAL=1 nuxt",
+    "dev": "nuxt",
+    "dev-mini": "MINIMAL=1 nuxt",
     "build": "nuxt build",
     "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore .",
     "lint-fix": "eslint --fix --ext .ts,.js,.vue --ignore-path .gitignore .",
@@ -15,27 +16,25 @@
   },
   "dependencies": {
     "nuxt-mq": "^2.0.2",
-    "nuxt-start": "^2.15.6",
+    "nuxt-start": "^2.15.7",
     "vue-class-component": "^7.2.0",
     "vue-mq": "^1.0.1",
     "vue-property-decorator": "^9.1.0"
   },
   "devDependencies": {
     "@babel/runtime-corejs2": "7.14.0",
-    "@nuxt/babel-preset-app": "2.15.6",
-    "@nuxt/types": "^2.15.0",
+    "@nuxt/babel-preset-app": "^2.15.7",
+    "@nuxt/types": "^2.15.7",
     "@nuxt/typescript-build": "^2.1.0",
-    "@nuxt/typescript-runtime": "^2.1.0",
     "@nuxtjs/eslint-config-typescript": "^6.0.0",
-    "@nuxtjs/eslint-module": "3.0.2",
-    "@nuxtjs/tailwindcss": "^3.4.0",
+    "@nuxtjs/eslint-module": "^3.0.2",
+    "@nuxtjs/tailwindcss": "^4.0.0",
     "@types/node": "^14.14.0",
     "@types/tailwindcss": "^2.2.1",
     "eslint": "^7.27.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
-    "nuxt": "^2.15.0",
-    "postcss": "^7.0.35",
+    "nuxt": "^2.15.7",
     "prettier": "^2.3.0"
   },
   "keywords": [
