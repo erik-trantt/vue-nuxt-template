@@ -18,12 +18,22 @@ module.exports = {
   variants: {},
   plugins: [],
   purge: {
+    enabled: process.env.APP_ENV !== "dev",
+    // tailwindcss v2 uses 'layers' purge mode
+    // recommended to purge utilities, but not base & components
+    layers: ["utilities"],
     content: [
-      `components/**/*.{vue,js}`,
-      `layouts/**/*.vue`,
-      `pages/**/*.vue`,
-      `plugins/**/*.{js,ts}`,
-      `nuxt.config.{js,ts}`,
+      "components/**/*.{vue,js}",
+      "layouts/**/*.vue",
+      "pages/**/*.vue",
+      "plugins/**/*.{js,ts}",
+      "nuxt.config.{js,ts}",
     ],
+    // purgecss v2 whitelisting options, example below
+    /* options: {
+      whitelist: ["bg-red-500", "w-1/2"],
+      whitelistPatterns: [],
+      whitelistPatternsChildren: [],
+    }, */
   },
 };
