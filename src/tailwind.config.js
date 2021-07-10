@@ -24,7 +24,7 @@ module.exports = {
   purge: {
     enabled: ["stg", "prd"].includes(process.env.APP_ENV),
     /**
-     * tailwindcss v2 now supports 'layers' purge mode
+     * tailwindcss v2 now supports `layers` purge mode
      * recommended to purge utilities, but not base & components
      */
     layers: ["utilities"],
@@ -36,35 +36,47 @@ module.exports = {
       "nuxt.config.{js,ts}",
     ],
     /**
-     * for tailwind v1.9.x, purgecss v2 whitelisting options,
-     * example below:
+     * ===== TailwindCSS v1.9.x =====
+     * TailwindCSS v1.9.x allows passing `options` object
+     * that will pass to PurgeCSS. It follows PurgeCSS v1 options:
+     * https://v1.purgecss.com/configuration#options
+     *
+     * For examples:
      */
     // options: {
     //   whitelist: ["bg-red-500", "w-1/2"],
-    //   whitelistPatterns: [],
+    //   whitelistPatterns: [/^text-/],
     //   whitelistPatternsChildren: [],
     // },
 
     /**
-     * for tailwind v2, purgecss v4 changed from 'whitelist'
-     * to 'safelist'.
-     * when in 'jit' mode, safelist only supports as an Array of
-     * classes at the moment, for examples:
+     * ===== TailwindCSS v2.x =====
+     * TailwindCSS v2 uses Purgecss v4.
+     * Purgecss v4 changes from `whitelist` to `safelist`.
+     * See all options: https://purgecss.com/configuration.html#options
+     * TailwindCSS v2 introduces its own `safelist` object, instead of passing
+     * `options` object to PurgeCSS like in v1.9.x.
+     *
+     * When in 'jit' mode, `safelist` only supports an Array of
+     * classes at the moment. For examples:
      */
-    // safelist: ["bg-red-500", "w-1/2", "text-2xl"],
+    // safelist: ["bg-red-500", "w-1/2"],
 
     /**
-     * when not using 'jit' mode, can use PurgeCSS 'options' object
-     * to safelist and blocklist classes, see examples below.
-     * for all options: https://purgecss.com/configuration.html#configuration-file
+     * When not using 'jit' mode, can use TailwindCSS `safelist` object or
+     * PurgeCSS `options` object to safelist and blocklist classes.
+     * TailwindCSS `safelist` object can take the same format as PurgeCSS
+     * `options` object.
+     *
+     * For examples:
      */
     // options: {
     //   safelist: {
     //     standard: ["bg-red-500", "w-1/2", /^text-/],
-    //     deep: [/^text-/],
+    //     deep: [],
     //     greedy: [],
     //   },
-    //   blocklist: ["bg-green-700"],
+    //   blocklist: [/^bg-green-/],
     // },
   },
 };
