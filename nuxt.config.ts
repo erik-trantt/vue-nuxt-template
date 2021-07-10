@@ -1,7 +1,7 @@
 /* eslint-env node */
 
 export default {
-  dev: process.env.NODE_ENV !== "production",
+  dev: process.env.APP_ENV === "dev",
   /**
    ** Headers of the page
    ** Doc: https://vue-meta.nuxtjs.org/api/#metainfo-properties
@@ -17,7 +17,16 @@ export default {
         content: "Official Nuxt.js starter for CodeSandBox",
       },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      {
+        // Firefox browser uses a different way to detect favicon
+        hid: "shortcut icon",
+        rel: "shortcut icon",
+        type: "image/x-icon",
+        href: "/favicon.ico",
+      },
+    ],
   },
 
   srcDir: "src/",
@@ -44,12 +53,19 @@ export default {
    */
   css: [],
 
-  tailwindcss: {
-    cssPath: "~/assets/css/tailwind.css",
-    configPath: "~/tailwind.config.js",
-    exposeConfig: true,
-    // config: {}, // extend tailwind config here
-  },
+  /**
+   * TailwindCSS paths are auto-detected using default paths:
+   * - cssPath: assets/css/tailwind.css
+   * - configPath: tailwind.config.js
+   * Because `srcDir: "src/"`, "~/assets/css/tailwind.css" will be parsed to
+   * "src/assets/css/tailwind.css". That fits current folder structure.
+   */
+  // tailwindcss: {
+  //   cssPath: "~/assets/css/tailwind.css",
+  //   configPath: "~/tailwind.config.js",
+  // exposeConfig: true,
+  // config: {}, // extend tailwind config here
+  // },
 
   /**
    ** Module options for @nuxtjs/eslint-config-typescript.
