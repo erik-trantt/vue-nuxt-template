@@ -1,17 +1,15 @@
 <template>
-  <div class="cb-cta-button">
-    <base-link :link="data" class="">
-      <span
-        class="inline-block"
-        :class="{
-          'px-4 py-2 text-white bg-black hover:bg-opacity-75': data.isButton,
-          'underline hover:no-underline text-blue-400': !data.isButton,
-        }"
-      >
-        {{ data.label }}
-      </span>
-    </base-link>
-  </div>
+  <base-link :link="data" class="cb-cta-button">
+    <span
+      class="inline-block"
+      :class="{
+        'px-4 py-2 text-white bg-black hover:bg-opacity-75': data.isButton,
+        'underline hover:no-underline text-blue-400': !data.isButton,
+      }"
+    >
+      {{ data.label }}
+    </span>
+  </base-link>
 </template>
 
 <script lang="ts">
