@@ -1,11 +1,10 @@
 <template>
-  <div>
-    <span
+  <div class="flex-col w-full px-4 md:px-20 lg:px-28">
+    <cb-fields
       v-for="(componentData, index) in data"
       :key="'cb-fields-' + componentData.type + index"
-    >
-      <cb-fields :data="componentData" />
-    </span>
+      :data="componentData"
+    />
   </div>
 </template>
 
@@ -30,64 +29,64 @@ export default class ContentBuilderPage extends Vue {
       children: [
         {
           type: "image-cta",
-          children: [
-            {
-              type: "image",
-              url: "",
-              alt: "cta image 1",
-            },
-            {
-              type: "link",
-              href: "",
-              label: "",
-              isButton: true,
-              buttonType: "primary",
-              position: "above",
-            },
-          ],
+          image: {
+            type: "image",
+            url: "https://via.placeholder.com/200x300.jpg?text=ratio+2:3",
+            alt: "cta image 1",
+            isStretch: false,
+          },
+          link: {
+            type: "link",
+            href: "/",
+            label: "Button 1",
+            isButton: true,
+            buttonType: "primary",
+            position: "above",
+          },
         },
         {
           type: "image-cta",
-          children: [
-            {
-              type: "image",
-              url: "",
-              alt: "",
-            },
-            {
-              type: "link",
-              href: "",
-              label: "",
-              isButton: true,
-              buttonType: "primary",
-              position: "below",
-            },
-          ],
+          image: {
+            type: "image",
+            url: "https://via.placeholder.com/200x300.jpg?text=ratio+2:3",
+            alt: "cta image 2",
+            isStretch: true,
+          },
+          link: {
+            type: "link",
+            href: "/",
+            label: "Link 1",
+            isButton: false,
+            buttonType: "primary",
+            position: "below",
+          },
         },
         {
           type: "image-cta",
-          children: [
-            {
-              type: "image",
-              url: "",
-              alt: "",
-            },
-            {
-              type: "link",
-              href: "",
-              label: "",
-              isButton: true,
-              buttonType: "primary",
-              position: "inside-center",
-            },
-          ],
+          image: {
+            type: "image",
+            url: "https://via.placeholder.com/200x300.jpg?text=ratio+2:3",
+            alt: "cta image 3",
+            isStretch: false,
+          },
+          link: {
+            type: "link",
+            href: "/",
+            label: "Link 2",
+            isButton: true,
+            buttonType: "secondary",
+            position: "inside-center",
+          },
         },
       ],
     },
     {
-      type: "image",
-      url: "",
-      alt: "parent image",
+      type: "link",
+      href: "/",
+      label: "back to homepage",
+      isButton: false,
+      buttonType: "secondary",
+      position: "inside-center",
     },
   ];
 }

@@ -1,6 +1,12 @@
 <template>
   <keep-alive>
-    <component :is="field" :data="data"></component>
+    <component
+      :is="field"
+      :data="data"
+      v-bind="$attrs"
+      :style="$vnode.data['style']"
+      :class="$vnode.data['staticClass']"
+    ></component>
   </keep-alive>
 </template>
 
@@ -15,10 +21,7 @@ export default class ContentBuilderFields extends Vue {
   };
 
   get field(): unknown {
-    return () =>
-      import(`~/components/content-builder/${this.data.type}-field.vue`);
+    return () => import(`~/components/content-builder/${this.data.type}-field`);
   }
 }
 </script>
-
-<style lang="postcss" scoped></style>
