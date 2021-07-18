@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-col w-full px-4 md:px-20 lg:px-28">
+  <div class="w-full px-4 md:px-20 lg:px-28 space-y-4">
     <cb-fields
       v-for="(componentData, index) in data"
       :key="'cb-fields-' + componentData.type + index"
@@ -33,11 +33,11 @@ export default class ContentBuilderPage extends Vue {
             type: "image",
             url: "https://via.placeholder.com/200x300.jpg?text=ratio+2:3",
             alt: "cta image 1",
-            isStretch: false,
+            isStretch: true,
           },
           link: {
             type: "link",
-            href: "/",
+            path: "",
             label: "Button 1",
             isCenter: true,
             isButton: true,
@@ -55,8 +55,9 @@ export default class ContentBuilderPage extends Vue {
           },
           link: {
             type: "link",
-            href: "/",
-            label: "Link 1",
+            path: "",
+            label: "",
+            isCenter: false,
             isButton: false,
             buttonType: "primary",
             position: "below",
@@ -68,13 +69,14 @@ export default class ContentBuilderPage extends Vue {
             type: "image",
             url: "https://via.placeholder.com/200x300.jpg?text=ratio+2:3",
             alt: "cta image 3",
-            isStretch: false,
+            isStretch: true,
           },
           link: {
             type: "link",
-            href: "/",
+            path: "",
             label: "Link 2",
             isButton: true,
+            isCenter: true,
             buttonType: "secondary",
             position: "inside-bottom",
           },
@@ -83,11 +85,19 @@ export default class ContentBuilderPage extends Vue {
     },
     {
       type: "link",
+      path: "",
+      label: "internal link back to homepage",
+      isButton: true,
+      isCenter: true,
+      buttonType: "primary",
+    },
+    {
+      type: "link",
       href: "/",
-      label: "back to homepage",
+      label: "this an external link to homepage",
       isButton: false,
+      isCenter: true,
       buttonType: "secondary",
-      position: "inside-center",
     },
   ];
 }
