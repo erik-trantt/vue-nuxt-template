@@ -1,6 +1,6 @@
 <template>
   <div
-    class="cb-group-field w-full flex flex-wrap"
+    class="cb-group-field flex flex-wrap -mx-2"
     :class="{
       'flex-row': data.direction === 'horizontal',
       'flex-col': data.direction !== 'horizontal',
@@ -11,7 +11,9 @@
       <cb-fields
         :key="'group-item-' + fieldData.type + index"
         :data="fieldData"
-        class="p-2"
+        class="shadow-lg border-r last:border-r-0"
+        :class="['p-2']"
+        style="border-color: #ccc"
         :style="{
           width: `${data.itemWithds[index]}%`,
           maxWidth: `${data.itemWithds[index]}%`,

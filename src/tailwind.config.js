@@ -19,7 +19,11 @@ module.exports = {
       },
     },
   },
-  variants: {},
+  variants: {
+    extend: {
+      borderWidth: ["hover", "focus", "first", "last"],
+    },
+  },
   plugins: [],
   purge: {
     enabled: process.env.NODE_ENV === "production",
