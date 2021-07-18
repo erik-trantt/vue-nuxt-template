@@ -1,11 +1,24 @@
 <template>
-  <base-link :link="data" class="cb-cta-button">
+  <base-link
+    :link="data"
+    class="cb-cta-button"
+    :class="{ 'pointer-events-none': isolatedLink }"
+  >
     <span
-      class="inline-block"
-      :class="{
-        'px-4 py-2 text-white bg-black hover:bg-opacity-75': data.isButton,
-        'underline hover:no-underline text-blue-400': !data.isButton,
-      }"
+      class="inline-block text-lg"
+      :class="[
+        {
+          'px-4 py-2': data.isButton,
+          'text-white bg-black border border-black hover:opacity-75':
+            data.isButton && data.buttonType === 'primary',
+          'text-black bg-white border border-gray-500 hover:opacity-75':
+            data.isButton && data.buttonType !== 'primary',
+          'underline hover:no-underline text-blue-400': !data.isButton,
+        },
+        {
+          'pointer-events-auto': isolatedLink,
+        },
+      ]"
     >
       {{ data.label }}
     </span>
@@ -21,5 +34,8 @@ import BaseLink from "~/components/base-components/base-link.vue";
 export default class CbCtaButton extends Vue {
   @Prop()
   readonly data!: CbCtaButtonData;
+
+  @Prop({ default: false })
+  readonly isolatedLink!: boolean;
 }
 </script>

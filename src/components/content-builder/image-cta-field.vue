@@ -21,17 +21,22 @@
       <cb-cta-button
         :data="link"
         class="h-full"
+        :isolated-link="!isOverlay"
         :class="[
+          'justify-center',
           {
-            'w-full text-center': link.isCenter,
-          },
-          {
-            'inline-block py-2': !isOverlay,
+            'inline-block py-4': !isOverlay,
+            'w-full text-center': !isOverlay && link.isCenter,
             'absolute inset-0 p-4 inline-flex': isOverlay,
-            'justify-center': true,
-            'items-start': link.position && link.position.match(/-top$/),
-            'items-center': link.position && link.position.match(/-center$/),
-            'items-end': link.position && link.position.match(/-bottom$/),
+            'items-start': Boolean(
+              link.position && link.position.match(/-top$/)
+            ),
+            'items-center': Boolean(
+              link.position && link.position.match(/-center$/)
+            ),
+            'items-end': Boolean(
+              link.position && link.position.match(/-bottom$/)
+            ),
           },
         ]"
       />
@@ -56,10 +61,10 @@ export interface CbCtaButtonData {
   href: string | undefined;
   path: string | undefined;
   label: string;
-  isCenter: boolean;
   isButton: boolean;
+  isCenter: boolean;
   buttonType: "primary" | "secondary";
-  position:
+  position?:
     | "above"
     | "below"
     | "inside-center"
@@ -88,17 +93,15 @@ export default class ImageCtaField extends Vue {
   readonly link: CbCtaButtonData = this.data.link;
 
   get isOverlay(): boolean {
+    if (!this.link.position) return false;
+
     const hasLabel = this.link.label.trim().length === 0;
 
-    const hasPosition = () => {
-      if (!("position" in this.link)) return false;
+    const hasPosition = (Object.values(OverlayPositions) as string[]).includes(
+      this.link.position
+    );
 
-      return (Object.values(OverlayPositions) as string[]).includes(
-        this.link.position
-      );
-    };
-
-    return hasLabel || hasPosition();
+    return hasLabel || hasPosition;
   }
 }
 </script>

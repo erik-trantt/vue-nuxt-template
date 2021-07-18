@@ -1,5 +1,10 @@
 <template>
-  <div class="cb-link-field">
+  <div
+    class="cb-link-field"
+    :class="{
+      'text-center': data.isCenter,
+    }"
+  >
     <cb-cta-button :data="data" />
   </div>
 </template>
