@@ -1,37 +1,38 @@
 <template>
   <div class="cb-image-cta-field">
     <div class="relative">
-      <div v-if="!isOverlay" class="relative">
-        <base-link :link="link" class="absolute inset-0 inline-block">
-          <img
-            :src="image.url"
-            :alt="image.alt"
-            :class="[
-              'h-auto object-cover',
-              {
-                'w-full': image.isStretch,
-              },
-            ]"
-            :style="{ aspectRatio: 2 / 3 }"
-          />
+      <div class="relative">
+        <!-- give slot value as null/undefined to render empty string, bypass rendering link.label -->
+        <base-link v-if="!isOverlay" :link="link" class="absolute inset-0">
+          {{ undefined }}
         </base-link>
+        <img
+          :src="image.url"
+          :alt="image.alt"
+          :class="[
+            'h-auto object-cover',
+            {
+              'w-full': image.isStretch,
+            },
+          ]"
+          :style="{ aspectRatio: 2 / 3 }"
+        />
       </div>
-      <img
-        v-else
-        :src="image.url"
-        :alt="image.alt"
-        :class="[
-          'h-full object-cover',
-          {
-            'w-full': image.isStretch,
-          },
-        ]"
-        :style="{ aspectRatio: 2 / 3 }"
-      />
       <cb-cta-button
         :data="link"
+        class="h-full"
         :class="[
-          { 'absolute inset-0': isOverlay, 'inline-block py-2': !isOverlay },
+          {
+            'w-full text-center': link.isCenter,
+          },
+          {
+            'inline-block py-2': !isOverlay,
+            'absolute inset-0 p-4 inline-flex': isOverlay,
+            'justify-center': true,
+            'items-start': link.position && link.position.match(/-top$/),
+            'items-center': link.position && link.position.match(/-center$/),
+            'items-end': link.position && link.position.match(/-bottom$/),
+          },
         ]"
       />
     </div>
@@ -55,6 +56,7 @@ export interface CbCtaButtonData {
   href: string | undefined;
   path: string | undefined;
   label: string;
+  isCenter: boolean;
   isButton: boolean;
   buttonType: "primary" | "secondary";
   position:
