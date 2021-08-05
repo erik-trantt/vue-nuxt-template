@@ -2,6 +2,8 @@
 import { NuxtConfig } from "@nuxt/types";
 
 const nuxtConfig: NuxtConfig = {
+  ssr: true,
+
   /**
    * Headers of the page
    * Doc: https://vue-meta.nuxtjs.org/api/#metainfo-properties
@@ -18,10 +20,9 @@ const nuxtConfig: NuxtConfig = {
       },
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       {
         // Firefox browser uses a different way to detect favicon
-        hid: "shortcut icon",
+        hid: "shortcut-icon",
         rel: "shortcut icon",
         type: "image/x-icon",
         href: "/favicon.ico",
@@ -33,6 +34,26 @@ const nuxtConfig: NuxtConfig = {
 
   build: {
     transpile: [],
+    postcss: {
+      order: "presetEnvAndCssnanoLast",
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+        cssnano:
+          process.env.NODE_ENV === "production"
+            ? {
+                preset: [
+                  "default",
+                  {
+                    discardComments: {
+                      removeAll: true,
+                    },
+                  },
+                ],
+              }
+            : false, // disable cssnano when not in production
+      },
+    },
   },
 
   /**

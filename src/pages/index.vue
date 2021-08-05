@@ -1,6 +1,14 @@
 <template>
   <section class="h-screen w-3/4 mx-auto">
-    <div>hello world {{ timestamp }}</div>
+    <div
+      class="transition-transform transform cursor-pointer"
+      :class="{
+        'translate-x-4': clicked,
+      }"
+      @click="clicked = !clicked"
+    >
+      hello world {{ timestamp }} {{ clicked }}
+    </div>
     <nuxt-link
       to="/content-builder"
       class="text-blue-500 underline hover:no-underline"
@@ -10,13 +18,13 @@
       <div class="item-h bg-green-400 h-3/4" style="width: 30%">a</div>
       <div class="item-h bg-yellow-400 h-3/4 parent" style="width: 70%">
         <div
-          class="item-v bg-green-700 bg-opacity-25"
+          class="item-v bg-green-700 bg-opacity-50"
           style="height: 50%; width: 100%"
         >
           {{ $mq }}
         </div>
         <div
-          class="item-v bg-green-900 bg-opacity-25"
+          class="item-v bg-green-900 bg-opacity-50"
           style="height: 50%; width: 100%"
         >
           {{ $mq | mq({ sm: 1, md: 2, lg: "3++" }) }}
@@ -35,6 +43,8 @@ import { Component, Vue } from "vue-property-decorator";
 })
 export default class Layout extends Vue {
   timestamp = Date.now();
+
+  clicked = false;
 
   get newTimestamp(): number {
     return Date.now();
