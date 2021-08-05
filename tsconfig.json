@@ -3,11 +3,7 @@
     "target": "es2018",
     "module": "esnext",
     "moduleResolution": "node",
-    "lib": [
-      "esnext",
-      "esnext.asynciterable",
-      "dom"
-    ],
+    "lib": ["esnext", "esnext.asynciterable", "dom"],
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "allowJs": true,
@@ -17,20 +13,15 @@
     "noImplicitAny": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": [
-        "./src/*"
-      ],
-      "@/*": [
-        "./*"
-      ]
+      "~/*": ["./src/*"],
+      "@/*": ["./*"]
     },
     "types": [
       "@types/node",
       "@nuxt/types",
-      "@types/tailwindcss"
+      "@types/tailwindcss",
+      "@types/critters-webpack-plugin"
     ]
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

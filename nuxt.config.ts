@@ -1,5 +1,6 @@
 /* eslint-env node */
 import { NuxtConfig } from "@nuxt/types";
+import Critters from "critters-webpack-plugin";
 
 const nuxtConfig: NuxtConfig = {
   /**
@@ -18,10 +19,9 @@ const nuxtConfig: NuxtConfig = {
       },
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
       {
         // Firefox browser uses a different way to detect favicon
-        hid: "shortcut icon",
+        hid: "shortcut-icon",
         rel: "shortcut icon",
         type: "image/x-icon",
         href: "/favicon.ico",
@@ -33,19 +33,29 @@ const nuxtConfig: NuxtConfig = {
 
   build: {
     transpile: [],
+    postcss: {},
   },
 
   /**
    * Nuxt.js modules
    * Doc: https://modules.nuxtjs.org
    */
-  modules: [],
+  // modules: [],
+  modules: ["@nuxtjs/critters"],
 
   buildModules: [
     "@nuxt/typescript-build",
     "@nuxtjs/eslint-module",
     "@nuxtjs/tailwindcss",
   ],
+
+  critters: {
+    config: {
+      preload: undefined,
+      noscriptFallback: false,
+      logLevel: "debug",
+    } as Critters.CrittersOptions,
+  },
 
   /**
    * Global CSS
