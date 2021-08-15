@@ -33,6 +33,14 @@ const nuxtConfig: NuxtConfig = {
 
   build: {
     transpile: [],
+    postcss: {
+      plugins: {
+        "postcss-csso": {
+          restructure: true,
+          comments: false,
+        },
+      },
+    },
   },
 
   /**

@@ -1508,6 +1508,18 @@
   dependencies:
     "@types/node" "*"
 
+"@types/css-tree@*":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@types/css-tree/-/css-tree-1.0.6.tgz#1eeb4838bb7ae2db2c223206f9ca4814610944b8"
+  integrity sha512-zjSMDm4C7J1azi9SdT1XwNaVCzeHZx+Y5AVebcg/mrtUULNxZjeamc8oQpUDKpaudM5R+Sy7RFvm2xphfwN64w==
+
+"@types/csso@^4.2.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@types/csso/-/csso-4.2.0.tgz#519d65057f16d78f357540b28a2d95ca72593f91"
+  integrity sha512-tGMZcJGgeIA67qbbm/ZKUi7ZyiTETEL0X4opRpFzULbIE1Kyt6EfOVSctw4N/WrEJZwmKw0J+1i/OApm6/CAOQ==
+  dependencies:
+    "@types/css-tree" "*"
+
 "@types/eslint@^7.2.6":
   version "7.2.11"
   resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-7.2.11.tgz#180b58f5bb7d7376e39d22496e2b08901aa52fd2"
@@ -7102,6 +7114,13 @@ postcss-convert-values@^4.0.1:
   dependencies:
     postcss "^7.0.0"
     postcss-value-parser "^3.0.0"
+
+postcss-csso@^5.0.0:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/postcss-csso/-/postcss-csso-5.0.1.tgz#023175280a4a8ff916d7763d3543c1fe55ed67a8"
+  integrity sha512-TI99uhhJK2L5IQXPuyNcT3XV9bffSvDPmNpHi5f+tBq+R/01ucgLsUCcTDcVNqKMxO28klI6NwgjrHrM99x9KA==
+  dependencies:
+    csso "^4.0.2"
 
 postcss-custom-media@^7.0.8:
   version "7.0.8"
