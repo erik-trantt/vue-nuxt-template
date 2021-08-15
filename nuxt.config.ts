@@ -1,10 +1,10 @@
 /* eslint-env node */
+import { NuxtConfig } from "@nuxt/types";
 
-export default {
-  dev: process.env.APP_ENV === "dev",
+const nuxtConfig: NuxtConfig = {
   /**
-   ** Headers of the page
-   ** Doc: https://vue-meta.nuxtjs.org/api/#metainfo-properties
+   * Headers of the page
+   * Doc: https://vue-meta.nuxtjs.org/api/#metainfo-properties
    */
   head: {
     title: "Nuxt.js starter for CSB",
@@ -36,8 +36,8 @@ export default {
   },
 
   /**
-   ** Nuxt.js modules
-   ** Doc: https://modules.nuxtjs.org
+   * Nuxt.js modules
+   * Doc: https://modules.nuxtjs.org
    */
   modules: [],
 
@@ -48,8 +48,8 @@ export default {
   ],
 
   /**
-   ** Global CSS
-   ** Doc: https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-css
+   * Global CSS
+   * Doc: https://nuxtjs.org/docs/2.x/configuration-glossary/configuration-css
    */
   css: [],
 
@@ -68,9 +68,9 @@ export default {
   // },
 
   /**
-   ** Module options for @nuxtjs/eslint-config-typescript.
-   ** Enable linting during runtime.
-   ** https://typescript.nuxtjs.org/guide/lint/#runtime-lint
+   * Module options for @nuxtjs/eslint-config-typescript.
+   * Enable linting during runtime.
+   * https://typescript.nuxtjs.org/guide/lint/#runtime-lint
    */
   typescript: {
     typeCheck: {
@@ -81,14 +81,10 @@ export default {
   },
 
   /**
-   ** Module options for @nuxtjs/eslint-module
-   ** https://github.com/nuxt-community/eslint-module
-   */
-  eslint: {},
-
-  /*
-   ** Plugins to load before mounting the App
-   ** Doc: https://nuxtjs.org/docs/2.x/directory-structure/plugins
+   * Plugins to load before mounting the App
+   * Doc: https://nuxtjs.org/docs/2.x/directory-structure/plugins
    */
   plugins: ["~/plugins/vue-mq.js"],
 };
+
+export default nuxtConfig;
