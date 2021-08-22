@@ -33,6 +33,13 @@ const nuxtConfig: NuxtConfig = {
 
   build: {
     transpile: [],
+    postcss: {
+      order: "presetEnvAndCssnanoLast",
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+      },
+    },
   },
 
   /**

@@ -6,7 +6,7 @@ module.exports = {
   /**
    * TailwindCSS v2 now supports 'jit' mode
    */
-  mode: process.env.NODE_ENV === "production" ? "jit" : "",
+  mode: "jit",
   theme: {
     extend: {
       colors: {
