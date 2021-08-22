@@ -1,9 +1,21 @@
 <template>
-  <section class="h-screen w-3/4 mx-auto">
+  <section class="flex flex-col mx-auto w-3/4 h-screen">
     <div>hello world {{ timestamp }}</div>
-    <div class="h-full w-full bg-black flex parent">
-      <div class="item-h bg-green-400 h-3/4" style="width: 30%">a</div>
-      <div class="item-h bg-yellow-400 h-3/4 parent" style="width: 70%">
+    <div>
+      <n-link
+        class="inline-block px-4 py-2 text-gray-100 bg-gray-800 cursor-pointer"
+        to="firefox-scrollbar"
+        >Try Firefox custom scrollbar</n-link
+      >
+      <n-link
+        class="inline-block px-4 py-2 text-gray-100 bg-gray-800 cursor-pointer"
+        to="webkit-scrollbar"
+        >Try Webkit/Chrome custom scrollbar</n-link
+      >
+    </div>
+    <div class="parent flex w-full h-full bg-black overflow-y-auto">
+      <div class="item-h h-3/4 bg-green-400" style="width: 30%">a</div>
+      <div class="item-h parent h-3/4 bg-yellow-400" style="width: 70%">
         <div
           class="item-v bg-green-700 bg-opacity-25"
           style="height: 50%; width: 100%"
