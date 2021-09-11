@@ -1,6 +1,11 @@
 <template>
   <section class="h-screen w-3/4 mx-auto">
     <div>hello world {{ timestamp }}</div>
+    <div>
+      <nuxt-link to="./swiper" class="text-white bg-black font-bold uppercase">
+        See Swiper
+      </nuxt-link>
+    </div>
     <div class="h-full w-full bg-black flex parent">
       <div class="item-h bg-green-400 h-3/4" style="width: 30%">a</div>
       <div class="item-h bg-yellow-400 h-3/4 parent" style="width: 70%">
