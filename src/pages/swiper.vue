@@ -1,10 +1,10 @@
 <template>
-  <section class="w-full">
+  <section class="w-full relative h-[50vh]">
     <div ref="container" class="swiper-container">
       <div class="swiper-wrapper">
         <button
-          v-for="i in data"
-          :key="i"
+          v-for="(num, index) in swiperData"
+          :key="index"
           type="button"
           class="
             swiper-slide
@@ -16,9 +16,9 @@
             p-3
             w-1/6
           "
-          @click="setResult(i.toString())"
+          @click="setResult(num.toString())"
         >
-          Button {{ i }}
+          Button {{ num }}
         </button>
       </div>
     </div>
@@ -27,17 +27,19 @@
     <div
       ref="prevBtn"
       class="swiper-button-prev w-1/6"
-      @click.stop="slidePrev"
+      @click.self="slidePrev"
     ></div>
     <div
       ref="nextBtn"
       class="swiper-button-next w-1/6"
-      @click.stop="slideNext"
+      @click.self="slideNext"
     ></div>
 
     <div class="my-8">
       Result -- Button <span class="font-bold">{{ result }}</span> clicked!
     </div>
+
+    <div ref="diagnosis" class="text-left h-[25vh] w-64 mx-auto"></div>
   </section>
 </template>
 
@@ -56,80 +58,116 @@ export default class SwiperPage extends Vue {
   @Ref()
   readonly prevBtn!: HTMLDivElement;
 
+  @Ref()
+  readonly diagnosis!: HTMLDivElement;
+
+  readonly SLIDES_PER_VIEW = 3;
+
+  shownIndex: number | null = null;
+
   swiper!: Swiper;
 
   result: string | null = "null";
 
   data = [1, 2, 3, 4, 5, 6, 7, 8];
 
-  // swiperData = [this.data[this.data.length - 1], ...this.data, this.data[0]];
-
-  swiperTouchStartX: number | null = null;
+  swiperData = [this.data[this.data.length - 1], ...this.data, this.data[0]];
 
   mounted(): void {
     this.swiper = new Swiper(this.container, {
       speed: 300,
       navigation: true,
       spaceBetween: 16,
-      slidesPerView: 3,
+      slidesPerView: this.SLIDES_PER_VIEW,
       // freeMode: true,
       // freeModeSticky: true,
     });
 
+    this.swiper.activeIndex = 1;
+    this.swiper.slideReset();
+
     this.swiper.on("touchEnd", (swiper, _ev) => {
-      const TOLERANCE = 100;
-      // console.log(_ev);
+      const TOLERANCE = 5;
 
       if (_ev.target === this.prevBtn || _ev.target === this.nextBtn) {
         return;
       }
 
-      if (swiper.isBeginning && swiper.touches.diff >= TOLERANCE) {
+      if (this.isBeginning && swiper.touches.diff >= TOLERANCE) {
         setTimeout(() => {
           this.slideToLast();
         }, 100);
-      } else if (swiper.isEnd && swiper.touches.diff <= -TOLERANCE) {
+      } else if (this.isEnd && swiper.touches.diff <= -TOLERANCE) {
         setTimeout(() => {
           this.slideToFirst();
         }, 100);
       }
+
+      // this.displayDiagnosis();
     });
 
-    // console.log(this.swiper);
+    this.swiper.on("slideChange", () => {
+      this.displayDiagnosis();
+      this.shownIndex = this.swiper.realIndex;
+    });
+  }
+
+  get isEnd(): boolean {
+    return (
+      this.shownIndex === this.swiperData.length - this.SLIDES_PER_VIEW - 1 ||
+      this.swiper.isEnd
+    );
+  }
+
+  get isBeginning(): boolean {
+    return this.shownIndex === 1 || this.swiper.isBeginning;
   }
 
   slideNext(): void {
-    if (this.swiper.isEnd) {
-      // console.log("slideNext", "isEnd", this.swiper.isEnd);
+    // console.log("slideNext", this.isEnd);
+
+    if (this.isEnd) {
       this.slideToFirst();
     } else {
-      // console.log("go next");
       this.swiper.slideNext();
     }
-    // this.swiper.slideNext();
   }
 
   slidePrev(): void {
-    if (this.swiper.isBeginning) {
-      // console.log("slidePrev", "isBeginning", this.swiper.isBeginning);
+    // console.log("slidePrev", this.isBeginning);
+
+    if (this.isBeginning) {
       this.slideToLast();
     } else {
-      // console.log("go prev");
       this.swiper.slidePrev();
     }
-    // this.swiper.slidePrev();
   }
 
   slideToFirst(): void {
-    this.swiper.slideToLoop(0, 500);
+    this.swiper.slideToLoop(1, 500);
   }
 
   slideToLast(): void {
-    this.swiper.slideToLoop(this.data.length - 1, 500);
+    this.swiper.slideToLoop(this.data.length - 2, 500);
   }
 
   setResult(text: string): void {
     this.result = text;
+  }
+
+  displayDiagnosis(): void {
+    if (!this.diagnosis) {
+      return;
+    }
+
+    this.diagnosis.innerHTML = `
+        this.swiperData.length ${this.swiperData.length} <br />
+        swiper.isBeginning ${this.swiper.isBeginning} <br />
+        isBeginning ${this.isBeginning} <br />
+        swiper.isEnd ${this.swiper.isEnd} <br />
+        isEnd ${this.isEnd} <br />
+        swiper.realIndex ${this.swiper.realIndex} <br />
+      `;
   }
 }
 </script>
