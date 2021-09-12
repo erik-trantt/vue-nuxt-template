@@ -2,7 +2,10 @@
   <section class="h-screen w-3/4 mx-auto">
     <div>hello world {{ timestamp }}</div>
     <div>
-      <nuxt-link to="./swiper" class="text-white bg-black font-bold uppercase">
+      <nuxt-link
+        to="./carousel-page"
+        class="text-white bg-black font-bold uppercase"
+      >
         See Swiper
       </nuxt-link>
     </div>
