@@ -177,9 +177,11 @@ export default class SwiperLoopWithJs extends Vue {
 
   slideNext(): void {
     // console.log("slideNext", this.isEnd);
+    console.log(this.swiper.getTranslate(), this.swiper.translate);
     this.shownIndex += 1;
     if (this.isEnd) {
-      this.slideToFirst();
+      this.swiper.translateTo(this.swiper.translate - 16, 2000);
+      // this.slideToFirst();
     } else {
       this.swiper.slideNext();
     }
@@ -189,7 +191,7 @@ export default class SwiperLoopWithJs extends Vue {
     // console.log("slidePrev", this.isBeginning);
     this.shownIndex -= 1;
     if (this.isBeginning) {
-      this.slideToLast();
+      // this.slideToLast();
     } else {
       this.swiper.slidePrev();
     }

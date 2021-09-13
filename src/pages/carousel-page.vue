@@ -1,15 +1,20 @@
 <template>
   <div class="w-full">
-    <swiper-loop-with-js
-      :data="data"
-      :append-number="3"
-      :prepend-number="3"
-      :offset-left="3"
-      :offset-right="3"
-      class="h-[50vh] py-4"
-    ></swiper-loop-with-js>
+    <div class="h-[74vh] py-4 border-b border-black">
+      <h2 class="text-xl">Swiper with fake loop</h2>
+      <swiper-loop-with-js
+        :data="data"
+        :append-number="4"
+        :prepend-number="4"
+        :offset-left="3"
+        :offset-right="3"
+      ></swiper-loop-with-js>
+    </div>
 
-    <swiper-loop :data="data" class="h-[50vh] py-4"></swiper-loop>
+    <div class="h-[24vh] py-4">
+      <h2 class="text-xl">Swiper with loop on</h2>
+      <swiper-loop :data="data"></swiper-loop>
+    </div>
   </div>
 </template>
 

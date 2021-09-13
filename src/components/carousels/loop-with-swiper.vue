@@ -38,8 +38,6 @@
     <div class="my-8">
       Result -- Button <span class="font-bold">{{ result }}</span> clicked!
     </div>
-
-    <div ref="diagnosis" class="text-left h-[25vh] w-64 mx-auto"></div>
   </section>
 </template>
 
@@ -113,20 +111,6 @@ export default class SwiperLoop extends Vue {
 
   setResult(text: string): void {
     this.result = text;
-  }
-
-  displayDiagnosis(): void {
-    if (!this.diagnosis) {
-      return;
-    }
-
-    this.diagnosis.innerHTML = `
-        this.swiperData.length ${this.swiperData.length} <br />
-        swiper.isBeginning ${this.swiper.isBeginning} <br />
-        swiper.isEnd ${this.swiper.isEnd} <br />
-        swiper.realIndex ${this.swiper.realIndex} <br />
-        swiper.params.slidesPerView ${this.swiper.params.slidesPerView} <br />
-      `;
   }
 }
 </script>
