@@ -1,5 +1,5 @@
 <template>
-  <section class="w-full relative">
+  <section class="w-full h-full relative">
     <div ref="container" class="swiper-container">
       <div class="swiper-wrapper">
         <button
@@ -43,14 +43,14 @@
 
     <div
       ref="diagnosis"
-      class="text-left h-[25vh] w-64 mx-auto text-gray-400"
+      class="text-left w-64 h-full mx-auto text-gray-400"
     ></div>
   </section>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop, Ref } from "vue-property-decorator";
-import { Swiper } from "swiper";
+import { Swiper, Pagination } from "swiper";
 
 @Component
 export default class SwiperLoopWithJs extends Vue {
@@ -101,16 +101,18 @@ export default class SwiperLoopWithJs extends Vue {
   })();
 
   mounted(): void {
+    Swiper.use([Pagination]);
     this.swiper = new Swiper(this.container, {
       speed: 300,
       navigation: true,
       spaceBetween: 16,
       slidesPerView: 3,
+      slidesPerGroup: 1,
       freeMode: true,
       freeModeSticky: true,
       freeModeMomentum: false,
       breakpoints: {
-        400: {
+        450: {
           slidesPerView: 4,
         },
       },
@@ -149,13 +151,14 @@ export default class SwiperLoopWithJs extends Vue {
     this.swiper.on("slideChange", () => {
       this.shownIndex = this.swiper.realIndex;
     });
+
+    // console.log(this.swiper);
   }
 
   get currentSlidesPerView(): number {
-    return this.swiper.params.slidesPerView &&
-      this.swiper.params.slidesPerView !== "auto"
+    return this.isSlidesPerViewNumber(this.swiper.params.slidesPerView)
       ? Number(this.swiper.params.slidesPerView)
-      : 0;
+      : 1;
   }
 
   get rightMostIndex(): number {
@@ -213,7 +216,15 @@ export default class SwiperLoopWithJs extends Vue {
     this.swiper.translateTo(this.swiper.translate - this.slideScrollWidth, 200);
 
     setTimeout(() => {
-      this.swiper.slideToLoop(this.leftMostIndex + this.offsetLeft, 0, false);
+      const destination =
+        this.leftMostIndex +
+        this.offsetLeft +
+        Number(this.swiper.params.slidesPerGroup) +
+        (this.offsetLeft - this.currentSlidesPerView);
+
+      // console.log(destination);
+
+      this.swiper.slideTo(destination, 0, false);
     }, 150);
   }
 
@@ -221,8 +232,22 @@ export default class SwiperLoopWithJs extends Vue {
     this.swiper.translateTo(this.swiper.translate + this.slideScrollWidth, 200);
 
     setTimeout(() => {
-      this.swiper.slideTo(this.rightMostIndex - this.offsetRight, 0, false);
+      const destination =
+        this.rightMostIndex -
+        this.offsetRight -
+        Number(this.swiper.params.slidesPerGroup) +
+        (this.currentSlidesPerView - this.offsetRight);
+
+      // console.log(destination);
+
+      this.swiper.slideTo(destination, 0, false);
     }, 150);
+  }
+
+  isSlidesPerViewNumber(
+    slidesPerView: typeof Swiper.defaults.slidesPerView
+  ): boolean {
+    return Boolean(slidesPerView) && slidesPerView !== "auto";
   }
 
   setResult(text: string): void {
@@ -240,12 +265,12 @@ export default class SwiperLoopWithJs extends Vue {
         shownIndex ${this.shownIndex} <br />
         swiper.isBeginning ${this.swiper.isBeginning} <br />
         isBeginning ${this.isBeginning} <br />
-        isBeginning ${this.prependNumber} <br />
+        begin at ${this.leftMostIndex + 1},
+        go left to ${this.rightMostIndex - this.offsetRight + 1} <br />
         swiper.isEnd ${this.swiper.isEnd} <br />
         isEnd ${this.isEnd} <br />
-        isEnd ${
-          this.swiperData.length - this.currentSlidesPerView - this.appendNumber
-        } <br />
+        end at ${this.rightMostIndex + 1},
+        go right to ${this.leftMostIndex + this.offsetLeft + 1} <br />
         swiper.params.slidesPerView ${this.swiper.params.slidesPerView} <br />
       `;
   }
@@ -255,5 +280,8 @@ export default class SwiperLoopWithJs extends Vue {
 <style lang="postcss" scoped>
 .swiper-container {
   @apply w-2/3;
+}
+.swiper-pagination {
+  position: static;
 }
 </style>
