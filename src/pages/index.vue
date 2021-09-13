@@ -1,55 +1,34 @@
 <template>
-  <section class="h-screen w-3/4 mx-auto">
-    <div>hello world {{ timestamp }}</div>
-    <div>
-      <nuxt-link
-        to="./carousel-page"
-        class="text-white bg-black font-bold uppercase"
-      >
-        See Swiper
-      </nuxt-link>
+  <div class="w-full">
+    <div class="h-[74vh] py-4 border-b border-black">
+      <h2 class="text-xl">Swiper loop option off, fake loop</h2>
+      <p class="pb-2">These duplicated slides have JS.</p>
+      <swiper-loop-with-js
+        :data="data"
+        :append-number="4"
+        :prepend-number="4"
+        :offset-left="3"
+        :offset-right="3"
+      ></swiper-loop-with-js>
     </div>
-    <div class="h-full w-full bg-black flex parent">
-      <div class="item-h bg-green-400 h-3/4" style="width: 30%">a</div>
-      <div class="item-h bg-yellow-400 h-3/4 parent" style="width: 70%">
-        <div
-          class="item-v bg-green-700 bg-opacity-25"
-          style="height: 50%; width: 100%"
-        >
-          {{ $mq }}
-        </div>
-        <div
-          class="item-v bg-green-900 bg-opacity-25"
-          style="height: 50%; width: 100%"
-        >
-          {{ $mq | mq({ sm: 1, md: 2, lg: "3++" }) }}
-        </div>
-      </div>
+
+    <div class="h-[24vh] py-4">
+      <h2 class="text-xl">Swiper with loop option on</h2>
+      <p class="pb-2">
+        Swiper's duplicated slides do not inherit any JS events or actions.
+      </p>
+      <swiper-loop :data="data"></swiper-loop>
     </div>
-  </section>
+  </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Vue, Component } from "vue-property-decorator";
+import SwiperLoopWithJs from "~/components/carousels/loop-with-js.vue";
+import SwiperLoop from "~/components/carousels/loop-with-swiper.vue";
 
-/* eslint-disable-next-line */
-@Component({
-  components: {},
-})
-export default class Layout extends Vue {
-  timestamp = Date.now();
-
-  get newTimestamp(): number {
-    return Date.now();
-  }
+@Component({ components: { SwiperLoopWithJs, SwiperLoop } })
+export default class CarouselPage extends Vue {
+  data = [1, 2, 3, 4, 5, 6, 7, 8];
 }
 </script>
-<style lang="postcss" scoped>
-/* .item-h + .item-h {
-  @apply pl-4;
-}
-
-.item-v + .item-v {
-  @apply pt-4;
-} */
-</style>

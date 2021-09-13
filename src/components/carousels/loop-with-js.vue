@@ -35,18 +35,22 @@
       @click.self="slideNext"
     ></div>
 
+    <div class="swiper-pagination w-full h-8"></div>
+
     <div class="my-8">
       Result -- Button <span class="font-bold">{{ result }}</span> clicked!
     </div>
 
-    <div ref="diagnosis" class="text-left h-[25vh] w-64 mx-auto"></div>
+    <div
+      ref="diagnosis"
+      class="text-left h-[25vh] w-64 mx-auto text-gray-400"
+    ></div>
   </section>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop, Ref } from "vue-property-decorator";
 import { Swiper } from "swiper";
-// import { last as _last, first as _first } from "lodash";
 
 @Component
 export default class SwiperLoopWithJs extends Vue {
@@ -83,7 +87,7 @@ export default class SwiperLoopWithJs extends Vue {
 
   result: string | null = "null";
 
-  get swiperData(): (string | number | HTMLElement)[] {
+  swiperData: (string | number | HTMLElement)[] = (() => {
     const slidesToPrepend =
       isNaN(Number(this.prependNumber)) || this.prependNumber <= 0
         ? []
@@ -94,7 +98,7 @@ export default class SwiperLoopWithJs extends Vue {
         : this.data.slice(0, this.appendNumber);
 
     return [...slidesToPrepend, ...this.data, ...slidesToAppend];
-  }
+  })();
 
   mounted(): void {
     this.swiper = new Swiper(this.container, {
@@ -109,6 +113,10 @@ export default class SwiperLoopWithJs extends Vue {
         400: {
           slidesPerView: 4,
         },
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        type: "fraction",
       },
     });
 
@@ -132,8 +140,6 @@ export default class SwiperLoopWithJs extends Vue {
           this.slideToFirst();
         }, 100);
       }
-
-      // this.displayDiagnosis();
     });
 
     this.swiper.on("beforeTransitionStart", () => {
@@ -143,8 +149,6 @@ export default class SwiperLoopWithJs extends Vue {
     this.swiper.on("slideChange", () => {
       this.shownIndex = this.swiper.realIndex;
     });
-
-    // console.log(this.swiper);
   }
 
   get currentSlidesPerView(): number {
@@ -177,11 +181,9 @@ export default class SwiperLoopWithJs extends Vue {
 
   slideNext(): void {
     // console.log("slideNext", this.isEnd);
-    console.log(this.swiper.getTranslate(), this.swiper.translate);
     this.shownIndex += 1;
     if (this.isEnd) {
-      this.swiper.translateTo(this.swiper.translate - 16, 2000);
-      // this.slideToFirst();
+      this.slideToFirst();
     } else {
       this.swiper.slideNext();
     }
@@ -191,18 +193,36 @@ export default class SwiperLoopWithJs extends Vue {
     // console.log("slidePrev", this.isBeginning);
     this.shownIndex -= 1;
     if (this.isBeginning) {
-      // this.slideToLast();
+      this.slideToLast();
     } else {
       this.swiper.slidePrev();
     }
   }
 
+  get slideScrollWidth(): number {
+    const gap = this.swiper.params.spaceBetween
+      ? this.swiper.params.spaceBetween
+      : 0;
+
+    const slideWidth = this.swiper.slides[0].scrollWidth;
+
+    return slideWidth + gap;
+  }
+
   slideToFirst(): void {
-    this.swiper.slideToLoop(this.leftMostIndex + this.offsetLeft, 0, false);
+    this.swiper.translateTo(this.swiper.translate - this.slideScrollWidth, 200);
+
+    setTimeout(() => {
+      this.swiper.slideToLoop(this.leftMostIndex + this.offsetLeft, 0, false);
+    }, 150);
   }
 
   slideToLast(): void {
-    this.swiper.slideTo(this.rightMostIndex - this.offsetRight, 0, false);
+    this.swiper.translateTo(this.swiper.translate + this.slideScrollWidth, 200);
+
+    setTimeout(() => {
+      this.swiper.slideTo(this.rightMostIndex - this.offsetRight, 0, false);
+    }, 150);
   }
 
   setResult(text: string): void {
