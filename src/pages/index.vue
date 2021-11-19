@@ -1,9 +1,9 @@
 <template>
-  <section class="h-screen w-3/4 mx-auto">
+  <section class="mx-auto w-3/4 h-screen">
     <div>hello world {{ timestamp }}</div>
-    <div class="h-full w-full bg-black flex parent">
-      <div class="item-h bg-green-400 h-3/4" style="width: 30%">a</div>
-      <div class="item-h bg-yellow-400 h-3/4 parent" style="width: 70%">
+    <div class="parent flex w-full h-full bg-black">
+      <div class="item-h h-3/4 bg-green-400" style="width: 30%">a</div>
+      <div class="item-h parent h-3/4 bg-yellow-400" style="width: 70%">
         <div
           class="item-v bg-green-700 bg-opacity-25"
           style="height: 50%; width: 100%"
