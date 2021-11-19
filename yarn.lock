@@ -1795,6 +1795,11 @@
     anymatch "^3.0.0"
     source-map "^0.6.0"
 
+"@types/workbox-window@^4.3.4":
+  version "4.3.4"
+  resolved "https://registry.yarnpkg.com/@types/workbox-window/-/workbox-window-4.3.4.tgz#701e2c612cbdbe2e2960e7fc9743b7bc2110f01f"
+  integrity sha512-Zyac7JfCO1iWLeHxC/hwJ132nXta/x0hl1kERdvHSUU2qVgQ7slmF9C0xhzWADRu7XO4v9+po9xtGD4yonlzyA==
+
 "@typescript-eslint/eslint-plugin@^5.1.0":
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.4.0.tgz#05e711a2e7b68342661fde61bccbd1531c19521a"
