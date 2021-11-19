@@ -51,6 +51,7 @@ const nuxtConfig: NuxtConfig = {
   buildModules: [
     "@nuxt/typescript-build",
     "@nuxtjs/eslint-module",
+    "@nuxtjs/pwa",
     "@nuxtjs/tailwindcss",
   ],
 
@@ -74,6 +75,11 @@ const nuxtConfig: NuxtConfig = {
   // config: {}, // extend tailwind config here
   // },
 
+  pwa: {
+    icon: false,
+    workbox: {},
+  },
+
   /**
    * Module options for @nuxtjs/eslint-config-typescript.
    * Enable linting during runtime.
@@ -91,7 +97,7 @@ const nuxtConfig: NuxtConfig = {
    * Plugins to load before mounting the App
    * Doc: https://nuxtjs.org/docs/2.x/directory-structure/plugins
    */
-  plugins: ["~/plugins/vue-mq.js"],
+  plugins: ["~/plugins/vue-mq"],
 };
 
 export default nuxtConfig;
