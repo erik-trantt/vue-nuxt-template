@@ -23,9 +23,9 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "@nuxtjs/eslint-config-typescript",
-    //"plugin:prettier/recommended",
-    "prettier"
+    "plugin:prettier/recommended"
   ],
+  "ignorePatterns": ["sw.js"],
   "rules": {
     "prettier/prettier": [
       "error"

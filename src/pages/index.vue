@@ -1,6 +1,9 @@
 <template>
   <section class="mx-auto w-3/4 h-screen">
     <div>hello world {{ timestamp }}</div>
+    <n-link to="/another" class="block">
+      click here to visit another page
+    </n-link>
     <div class="parent flex w-full h-full bg-black">
       <div class="item-h h-3/4 bg-green-400" style="width: 30%">a</div>
       <div class="item-h parent h-3/4 bg-yellow-400" style="width: 70%">

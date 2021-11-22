@@ -11,12 +11,14 @@
     "strict": true,
     "noEmit": true,
     "noImplicitAny": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"],
       "@/*": ["./*"]
     },
-    "types": ["@types/node", "@nuxt/types", "@types/tailwindcss"]
+    "types": ["@types/node", "@nuxt/types", "@types/tailwindcss", "@nuxtjs/pwa"]
   },
   "exclude": ["node_modules"]
 }
