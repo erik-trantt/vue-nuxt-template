@@ -1,23 +1,21 @@
 <template>
-  <section class="h-screen w-3/4 mx-auto">
-    <div>hello world {{ timestamp }}</div>
-    <div class="h-full w-full bg-black flex parent">
-      <div class="item-h bg-green-400 h-3/4" style="width: 30%">a</div>
-      <div class="item-h bg-yellow-400 h-3/4 parent" style="width: 70%">
-        <div
-          class="item-v bg-green-700 bg-opacity-25"
-          style="height: 50%; width: 100%"
-        >
-          {{ $mq }}
-        </div>
-        <div
-          class="item-v bg-green-900 bg-opacity-25"
-          style="height: 50%; width: 100%"
-        >
-          {{ $mq | mq({ sm: 1, md: 2, lg: "3++" }) }}
-        </div>
-      </div>
-    </div>
+  <section class="h-screen w-3/4 mx-auto py-8">
+    <editor
+      api-key="no-api-key"
+      :init="{
+        height: 500,
+        menubar: false,
+        plugins: [
+          'advlist autolink lists link image charmap print preview anchor',
+          'searchreplace visualblocks code fullscreen',
+          'insertdatetime media table paste code help wordcount',
+        ],
+        toolbar:
+          'undo redo | formatselect | bold italic backcolor | \
+           alignleft aligncenter alignright alignjustify | \
+           bullist numlist outdent indent | removeformat | help',
+      }"
+    />
   </section>
 </template>
 
