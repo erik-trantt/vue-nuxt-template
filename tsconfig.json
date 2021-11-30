@@ -18,7 +18,7 @@
       "~/*": ["./src/*"],
       "@/*": ["./*"]
     },
-    "types": ["@types/node", "@nuxt/types", "@types/tailwindcss", "@nuxtjs/pwa"]
+    "types": ["@types/node", "@nuxt/types", "@types/tailwindcss", "@nuxtjs/pwa", "@types/ckeditor__ckeditor5-build-classic"]
   },
   "exclude": ["node_modules"]
 }
