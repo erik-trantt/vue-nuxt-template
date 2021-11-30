@@ -51,6 +51,7 @@ const nuxtConfig: NuxtConfig = {
   buildModules: [
     "@nuxt/typescript-build",
     "@nuxtjs/eslint-module",
+    "@nuxtjs/pwa",
     "@nuxtjs/tailwindcss",
   ],
 
