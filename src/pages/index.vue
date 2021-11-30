@@ -23,10 +23,11 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import Editor from "@tinymce/tinymce-vue";
 
 /* eslint-disable-next-line */
 @Component({
-  components: {},
+  components: { Editor },
 })
 export default class Layout extends Vue {
   timestamp = Date.now();
