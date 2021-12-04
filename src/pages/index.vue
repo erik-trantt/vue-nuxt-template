@@ -73,6 +73,7 @@
 </template>
 
 <script lang="ts">
+import { MetaInfo } from "vue-meta";
 import { Component, Vue, Ref } from "vue-property-decorator";
 import Editor from "@tinymce/tinymce-vue";
 import { Editor as EditorType } from "tinymce";
@@ -80,6 +81,22 @@ import { Editor as EditorType } from "tinymce";
 /* eslint-disable-next-line */
 @Component({
   components: { Editor },
+
+  head() {
+    const head: MetaInfo = {
+      title: "Cuppe - Content Builder",
+    };
+
+    head.link = head.link || [];
+
+    head.link.push({
+      href: "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css",
+      rel: "stylesheet",
+      type: "text/css",
+    });
+
+    return head;
+  },
 })
 export default class Layout extends Vue {
   editorContent = "<p>Enter your content here...</p>";

@@ -20,6 +20,7 @@
     "nuxt-start": "^2.15.8",
     "tinymce": "5.10.2",
     "vue-class-component": "^7.2.6",
+    "vue-meta": "^2.4.0",
     "vue-mq": "^1.0.1",
     "vue-property-decorator": "^9.1.2"
   },
