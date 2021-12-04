@@ -1,12 +1,17 @@
 /* eslint-env node */
-/* eslint-disable-next-line @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-var-requires */
 const defaultConfig = require("tailwindcss/defaultConfig");
+const plugin = require("tailwindcss/plugin");
+/* eslint-enable @typescript-eslint/no-var-requires */
 
 module.exports = {
   /**
    * TailwindCSS v2 now supports 'jit' mode
    */
   mode: "jit",
+  corePlugins: {
+    container: false,
+  },
   theme: {
     extend: {
       colors: {
@@ -20,7 +25,19 @@ module.exports = {
     },
   },
   variants: {},
-  plugins: [],
+  plugins: [
+    plugin(function ({ addComponents, theme }) {
+      const container = {
+        ".container": {
+          width: "100%",
+          padding: `${theme("spacing.0")} ${theme("spacing.4")}`,
+          margin: "0 auto",
+        },
+      };
+
+      addComponents(container);
+    }),
+  ],
   purge: {
     enabled: process.env.NODE_ENV === "production",
     /**

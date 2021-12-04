@@ -15,9 +15,10 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@tinymce/tinymce-vue": "^3.0.0",
+    "@tinymce/tinymce-vue": "^3.2.8",
     "nuxt-mq": "^2.0.2",
     "nuxt-start": "^2.15.8",
+    "tinymce": "5.10.2",
     "vue-class-component": "^7.2.6",
     "vue-mq": "^1.0.1",
     "vue-property-decorator": "^9.1.2"
