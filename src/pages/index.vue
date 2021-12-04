@@ -203,4 +203,14 @@ details > summary {
   padding: 1rem;
   list-style: initial;
 }
+ul,
+ol {
+  list-style-position: inside;
+}
+ul {
+  list-style-type: disc;
+}
+ol {
+  list-style-type: decimal;
+}
 </style>
