@@ -169,39 +169,78 @@ const accordionTemplate = (open = false) => `
 </script>
 
 <style lang="postcss">
-details > summary {
+.cuppe-details > .cuppe-summary {
   list-style: none;
 }
 .cuppe-font-accordion-label {
   color: #404040;
+  font-weight: 700;
 }
 .cuppe-font-accordion-content {
   color: grey;
 }
 .cuppe-summary {
   cursor: pointer;
-  padding: 1rem;
+  padding: 0 1rem;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 .cuppe-summary::after {
   font-family: "FontAwesome";
-  content: "\f106";
   font-weight: bolder;
-  float: right;
+  margin-left: 1rem;
+}
+.cuppe-summary > * {
+  margin-bottom: 0px !important;
+}
+.cuppe-details[open] > .cuppe-details-content {
+  opacity: 1;
+  font-size: 1rem;
+  padding: 1.25rem;
+}
+.cuppe-details:not([open]) > .cuppe-summary::after {
+  content: "\f106";
 }
 .cuppe-details[open] > .cuppe-summary::after {
-  font-family: "FontAwesome";
   content: "\f107";
-  transition: 0.5s;
 }
 .cuppe-details {
   width: 98%;
   margin: auto;
+  padding-top: 1rem;
 }
 .cuppe-details-content {
+  animation-duration: 500ms;
+  animation-name: slidein;
+  animation-direction: alternate;
+  opacity: 0;
+  line-height: 28px;
+  transition: all 500ms;
+  box-sizing: border-box;
   margin-left: 1rem;
-  padding: 1rem;
+  padding: 0 1rem;
   list-style: initial;
+  position: relative;
+}
+.cuppe-details-content > :only-child {
+  margin-bottom: 0rem !important;
+}
+.cuppe-details-content > :not(:only-child) {
+  margin-bottom: 0.5rem !important;
+}
+@keyframes slidein {
+  from {
+    opacity: 0;
+    font-size: unset;
+    padding: 0 1rem;
+  }
+
+  to {
+    opacity: 1;
+    font-size: 1rem;
+    padding: 1.25rem;
+  }
 }
 ul,
 ol {
