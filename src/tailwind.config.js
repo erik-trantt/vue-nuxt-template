@@ -8,6 +8,17 @@ module.exports = {
    */
   mode: "jit",
   theme: {
+    container: {
+      center: true, // adding a '.mx-auto'
+      padding: {
+        DEFAULT: "1rem",
+        lg: "3rem",
+        "2xl": "5rem",
+      },
+      screens: {
+        DEFAULT: "100%",
+      },
+    },
     extend: {
       colors: {
         primary: defaultConfig.theme.colors.green["500"],
